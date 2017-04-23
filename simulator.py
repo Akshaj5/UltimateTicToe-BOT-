@@ -3,7 +3,7 @@ import random
 import signal
 import time
 import copy
-
+from team8 import *
 class TimedOutExc(Exception):
 	pass
 
@@ -194,7 +194,8 @@ def gameplay(obj1, obj2):				#game simulator
 			break
 		except Exception as e:
 			WINNER = 'P2'
-			MESSAGE = 'INVALID MOVE'
+				
+			MESSAGE = 'INVALID MOVE a'
 			pts2 = 16			
 			break
 		signal.alarm(0)
@@ -207,7 +208,7 @@ def gameplay(obj1, obj2):				#game simulator
 			break
 		if game_board.update(old_move, p1_move, fl1) == 'UNSUCCESSFUL':
 			WINNER = 'P2'
-			MESSAGE = 'INVALID MOVE'
+			MESSAGE = 'INVALID MOVE b'
 			pts2 = 16
 			break
 
@@ -224,6 +225,8 @@ def gameplay(obj1, obj2):				#game simulator
 			break
 
 		old_move = p1_move
+		print "MOVE_P1"
+		print old_move
 		game_board.print_board()
 
 		#do the same thing for player 2
@@ -240,7 +243,7 @@ def gameplay(obj1, obj2):				#game simulator
 			break
 		except Exception as e:
 			WINNER = 'P1'
-			MESSAGE = 'INVALID MOVE'
+			MESSAGE = 'INVALID MOVE c'
 			pts1 = 16			
 			break
 		signal.alarm(0)
@@ -251,7 +254,7 @@ def gameplay(obj1, obj2):				#game simulator
 			break
 		if game_board.update(old_move, p2_move, fl2) == 'UNSUCCESSFUL':
 			WINNER = 'P1'
-			MESSAGE = 'INVALID MOVE'
+			MESSAGE = 'INVALID MOVE d'
 			pts1 = 16
 			break
 
@@ -266,6 +269,8 @@ def gameplay(obj1, obj2):				#game simulator
 			WINNER = 'NONE'
 			MESSAGE = 'DRAW'
 			break
+		print "MOVE_P2"
+		print p2_move
 		game_board.print_board()
 		old_move = p2_move
 
@@ -315,6 +320,15 @@ if __name__ == '__main__':
 	elif option == '3':
 		obj1 = Manual_Player()
 		obj2 = Manual_Player()
+	elif option == '4':
+		obj1 = Player8()
+		obj2 = Random_Player()
+	elif option == '5':
+		obj1 = Random_Player()
+		obj2 = Player8()
+	
+	
+		
 	else:
 		print 'Invalid option'
 		sys.exit(1)
